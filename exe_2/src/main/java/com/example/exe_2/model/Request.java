@@ -1,6 +1,5 @@
 package com.example.exe_2.model;
 
-import com.example.exe_2.exception.UnsupertCodeException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +15,6 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Request {
-
-
     @NotBlank(message = "Uid  не может быть пустым ")
     @Size(max = 32)
     private String uid;
@@ -33,12 +30,5 @@ public class Request {
     private int templateId;
     private int productCode;
     private int smsCode;
-
-//    public void setUid(String uid) throws UnsupertCodeException {
-//        if (uid.equals("123")){
-//            throw new UnsupertCodeException("значение равно 123");
-//        }
-//        this.uid = uid;
-//    }
 
 }

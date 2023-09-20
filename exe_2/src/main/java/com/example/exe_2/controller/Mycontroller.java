@@ -1,6 +1,5 @@
 package com.example.exe_2.controller;
 
-import com.example.exe_2.exception.UnsupertCodeException;
 import com.example.exe_2.exception.ValidationFailedException;
 import com.example.exe_2.model.Request;
 import com.example.exe_2.model.Response;
@@ -40,13 +39,7 @@ public class Mycontroller {
                 .build();
 
         try{
-            validationService.isCode(bindingResult);
             validationService.isValid(bindingResult);
-        }catch (UnsupertCodeException e){
-            response.setCode("failed");
-            response.setErrorCode("UnsupertCodeException");
-            response.setErrorMassage("Непредвиденная ошибка 123");
-            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }catch (ValidationFailedException e) {
             response.setCode("failed");
             response.setErrorCode("ValidationException");
@@ -58,7 +51,6 @@ public class Mycontroller {
             response.setErrorMassage("Неизвестная ошибка");
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

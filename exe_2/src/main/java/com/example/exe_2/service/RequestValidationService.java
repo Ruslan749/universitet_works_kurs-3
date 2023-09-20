@@ -1,6 +1,5 @@
 package com.example.exe_2.service;
 
-import com.example.exe_2.exception.UnsupertCodeException;
 import com.example.exe_2.exception.ValidationFailedException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -12,12 +11,4 @@ public class RequestValidationService implements ValidationService{
             throw new ValidationFailedException(bindingResult.getFieldError().toString());
         }
     }
-
-    @Override
-    public void isCode(BindingResult bindingResult) throws UnsupertCodeException {
-        if (bindingResult.hasErrors()){
-            throw new UnsupertCodeException(bindingResult.getFieldError().toString());
-        }
-    }
-
 }
