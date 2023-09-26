@@ -28,9 +28,9 @@ public class Mycontroller {
     private final ValidationService validationService;
     private final UnsupportedCodeService unsupportedCodeService;
     @Autowired
-    public Mycontroller(ValidationService validationService, UnsupportedCodeService unsupportedCodeService, UnsupportedCodeService unsupportedCodeService1) {
+    public Mycontroller(ValidationService validationService, UnsupportedCodeService unsupportedCodeService) {
         this.validationService = validationService;
-        this.unsupportedCodeService = unsupportedCodeService1;
+        this.unsupportedCodeService = unsupportedCodeService;
     }
 
     @PostMapping(value = "/feedback")
@@ -46,6 +46,8 @@ public class Mycontroller {
                 .errorMassage(ErrorMessages.EMPTY)
                 .build();
 
+
+
         try{
             validationService.isValid(bindingResult);
             unsupportedCodeService.isCode(request);
@@ -53,11 +55,13 @@ public class Mycontroller {
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.VALIDATION_EXCEPTION);
             response.setErrorMassage(ErrorMessages.VALIDATION);
+            log.error(e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }catch (UnsupertCodeException e){
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.UNSUPPORTED_EXCEPTION);
             response.setErrorMassage(ErrorMessages.UNSUPPORTED);
+            log.error(e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.I_AM_A_TEAPOT);
         }
         catch (Exception e){
@@ -66,6 +70,8 @@ public class Mycontroller {
             response.setErrorMassage(ErrorMessages.UNKNOWN);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        log.info("response:{}", response);
         return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 }

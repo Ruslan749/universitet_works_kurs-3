@@ -11,7 +11,7 @@ public class RequestUnsatedException implements UnsupportedCodeService {
     @Override
     public void isCode(Request request) throws UnsupertCodeException {
         if (Objects.equals(request.getUid(),"123")){
-            throw new UnsupertCodeException();
+            throw new UnsupertCodeException("значение UID не должно быть = 123");
         }
     }
 }

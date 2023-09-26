@@ -5,9 +5,11 @@ import com.example.exe_3loging.Enum.ErrorCodes;
 import com.example.exe_3loging.Enum.ErrorMessages;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Builder
+@ToString
 public class Response {
     private String uid;
     private String operationUid;
