@@ -1,9 +1,7 @@
 package com.example.exe_3loging.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.exe_3loging.Enum.Systems;
+import lombok.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -21,7 +19,9 @@ public class Request {
     @NotBlank(message = "operationUid не может быть пустым")
     @Size(max = 32, message = "operationUid должен быть < 32 символов")
     private String operationUid;
-    private String systemName;
+
+    private Systems systemName;
+
     private String systemTime;
     private String source;
     @Min(value = 1, message = "communicationId не может быть меньше 1")
@@ -30,6 +30,8 @@ public class Request {
     private int templateId;
     private int productCode;
     private int smsCode;
+
+
 
     @Override
     public String toString() {
