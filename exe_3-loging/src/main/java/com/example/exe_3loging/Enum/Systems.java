@@ -3,19 +3,22 @@ package com.example.exe_3loging.Enum;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Systems {
-    ERP("Enterprise Resource Planning"),
-    CRM("Customer Relationship Management"),
-    WMS("Warehouse Management System");
+    ERP("ERP"),
+    CRM("CRM"),
+    WMS("WMS");
 
-    private final String description;
 
-    Systems(String description) {
-        this.description = description;
+
+    private final String name;
+
+    Systems(String name) {
+        this.name = name;
     }
 
     @JsonValue
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
+
 
 }
