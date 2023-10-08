@@ -7,7 +7,8 @@ import com.example.service_two.exception.UnsupertCodeException;
 import com.example.service_two.exception.ValidationFailedException;
 import com.example.service_two.model.Request;
 import com.example.service_two.model.Response;
-import com.example.service_two.service.ModifySystemTimeResponseService;
+import com.example.service_two.service.FormattedService;
+import com.example.service_two.service.ModifyResponseService;
 import com.example.service_two.service.UnsupportedCodeService;
 import com.example.service_two.service.ValidationService;
 import com.example.service_two.util.DateTimeUtil;
@@ -28,20 +29,22 @@ import java.util.Date;
 public class Mycontroller {
     private final ValidationService validationService;
     private final UnsupportedCodeService unsupportedCodeService;
-    private final ModifySystemTimeResponseService modifySystemTimeResponseService;
+    private final ModifyResponseService modifyResponseService;
+    private final FormattedService formattedService;
     @Autowired
     public Mycontroller(ValidationService validationService,
-                        @Qualifier("ModifySystemTimeResponseService") ModifySystemTimeResponseService modifySystemTimeResponseService,
-                        UnsupportedCodeService unsupportedCodeService) {
+                        @Qualifier("ModifySystemTimeResponseService")ModifyResponseService modifyResponseService,
+                        UnsupportedCodeService unsupportedCodeService, FormattedService formattedService) {
         this.validationService = validationService;
         this.unsupportedCodeService = unsupportedCodeService;
-        this.modifySystemTimeResponseService = modifySystemTimeResponseService;
+        this.modifyResponseService = modifyResponseService;
+        this.formattedService = formattedService;
     }
 
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request, BindingResult bindingResult) {
-
         log.info("request:{}",request);
+
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
@@ -50,8 +53,6 @@ public class Mycontroller {
                 .errorCode(ErrorCodes.EMPTY)
                 .errorMassage(ErrorMessages.EMPTY)
                 .build();
-
-
         try{
             validationService.isValid(bindingResult);
             unsupportedCodeService.isCode(request);
@@ -75,11 +76,11 @@ public class Mycontroller {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         log.info("response:{}", response);
+
+
+        formattedService.modifyTime(request,response);
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
 
-    public ModifySystemTimeResponseService getModifySystemTimeResponseService() {
-        return modifySystemTimeResponseService;
-    }
 }

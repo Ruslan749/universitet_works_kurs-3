@@ -1,12 +1,14 @@
 package com.example.service_one.model;
 
 import com.example.service_one.Enum.Systems;
+import com.example.service_one.util.DateTimeUtil;
 import lombok.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Data
 @Builder
@@ -21,6 +23,17 @@ public class Request {
     private String operationUid;
 
     private Systems systemName;
+
+
+
+    public void setSystemTime(String systemTime) {
+        if (systemTime.isEmpty()){
+            this.systemTime = DateTimeUtil.getCustomFormatFormat().format(new Date());
+        }else {
+            this.systemTime=systemTime;
+        }
+
+    }
 
     private String systemTime;
     private String source;

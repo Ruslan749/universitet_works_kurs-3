@@ -28,11 +28,12 @@ public class Mycontroller {
     private final UnsupportedCodeService unsupportedCodeService;
     private final ModifyRequestService modifyRequestService;
     private final ModifyResponseService modifyResponseService;
+
     @Autowired
     public Mycontroller(ValidationService validationService,
                         UnsupportedCodeService unsupportedCodeService,
-                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService
-            ,ModifyRequestService modifyRequestService) {
+                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService,
+                        @Qualifier("SystemName") ModifyRequestService modifyRequestService) {
         this.validationService = validationService;
         this.unsupportedCodeService = unsupportedCodeService;
         this.modifyRequestService = modifyRequestService;
@@ -41,8 +42,8 @@ public class Mycontroller {
 
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request, BindingResult bindingResult) {
-
         log.info("request:{}",request);
+
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
@@ -76,8 +77,11 @@ public class Mycontroller {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         log.info("response:{}", response);
+
         modifyRequestService.modify(request);
+
         modifyResponseService.modify(response);
+
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
 
     }
