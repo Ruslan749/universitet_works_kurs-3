@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="exe_3-loging" />
+        <module name="exe_6-SpringWebServer" />
         <module name="exa-1_Start" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="exa-1_Start" options="-parameters" />
       <module name="exe_2" options="-parameters" />
       <module name="exe_3-loging" options="-parameters" />
+      <module name="exe_6-SpringWebServer" options="-parameters" />
     </option>
   </component>
 </project>
