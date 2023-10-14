@@ -31,7 +31,7 @@ public class MyController {
         return studentService.saveStudent(student);
     }
 
-    @PutMapping("students")
+    @PutMapping("students/{id}")
     public Student updeteStudent(@RequestBody Student student){
         studentService.saveStudent(student);
         return student;

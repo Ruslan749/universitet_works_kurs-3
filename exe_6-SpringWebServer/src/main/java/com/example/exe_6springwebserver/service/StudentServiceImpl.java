@@ -4,9 +4,11 @@ import com.example.exe_6springwebserver.dao.StudentDAO;
 import com.example.exe_6springwebserver.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
+@Transactional
 public class StudentServiceImpl implements StudentService{
     private final StudentDAO studentDAO;
     @Autowired
