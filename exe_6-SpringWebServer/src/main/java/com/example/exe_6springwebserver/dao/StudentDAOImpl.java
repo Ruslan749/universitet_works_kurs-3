@@ -31,6 +31,24 @@ public class StudentDAOImpl implements StudentDAO{
         log.info("получены все студенты");
         return allStudent;
     }
+
+    @Override
+    public Student saveStudent(Student student) {
+        return entityManager.merge(student);
+    }
+
+    @Override
+    public Student putStudent(Student student, int id) {
+        student.setId(id);
+
+        if (getStudent(id) != null) {
+            return entityManager.merge(student);
+        } else {
+            log.error("запись успешно изменена");
+            return null;
+        }
+    }
+
     @Override
     public Student getStudent(int id) {
         Student student = entityManager.find(Student.class,id);
@@ -43,16 +61,11 @@ public class StudentDAOImpl implements StudentDAO{
     }
 
     @Override
-    public Student saveStudent(Student student) {
-        return entityManager.merge(student);
-    }
-
-
-    @Override
     public void deleteStudent(int id) {
         getStudent(id);
         Query query = entityManager.createQuery("delete from Student where id=:studentId");
         query.setParameter("studentId",id);
         query.executeUpdate();
     }
+
 }
