@@ -1,11 +1,11 @@
 package com.example.exe_6springwebserver.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,15 +20,19 @@ public class Student {
     private int id;
 
     @Column(name = "name")
+    @NotBlank
     private String name;
 
     @Column(name = "surname")
+    @NotBlank
     private String surname;
 
     @Column(name = "faculty")
+    @NotBlank
     private String faculty;
 
     @Column(name = "age")
+    @NotNull
     private int age;
 
     public Student(String name, String surname, String faculty, int age) {

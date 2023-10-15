@@ -23,8 +23,23 @@ public class StudentDAOImpl implements StudentDAO{
     public List<Student> getAllStudents() {
         Query query =  entityManager.createQuery("from Student");
         List<Student> allStudent = query.getResultList();
-        log.info("getAllStudents:" + allStudent);
+        if (allStudent.isEmpty()){
+            log.error("база данных пуста");
+            return null;
+        }
+
+        log.info("получены все студенты");
         return allStudent;
+    }
+    @Override
+    public Student getStudent(int id) {
+        Student student = entityManager.find(Student.class,id);
+        if (student == null){
+            log.error("человека с таким id не существует");
+            return null;
+        }
+        log.info("получен искомый студент");
+        return student;
     }
 
     @Override
@@ -32,13 +47,10 @@ public class StudentDAOImpl implements StudentDAO{
         return entityManager.merge(student);
     }
 
-    @Override
-    public Student getStudent(int id) {
-        return entityManager.find(Student.class,id);
-    }
 
     @Override
     public void deleteStudent(int id) {
+        getStudent(id);
         Query query = entityManager.createQuery("delete from Student where id=:studentId");
         query.setParameter("studentId",id);
         query.executeUpdate();
