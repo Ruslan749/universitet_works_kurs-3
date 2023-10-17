@@ -1,4 +1,4 @@
-package com.example.exe_6springwebserver.service;
+package com.example.exe_6springwebserver.service.students;
 
 import com.example.exe_6springwebserver.entity.Student;
 import org.springframework.stereotype.Service;

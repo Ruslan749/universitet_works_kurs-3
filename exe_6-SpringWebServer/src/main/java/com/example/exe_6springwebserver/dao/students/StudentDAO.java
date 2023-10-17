@@ -1,4 +1,4 @@
-package com.example.exe_6springwebserver.dao;
+package com.example.exe_6springwebserver.dao.students;
 
 import com.example.exe_6springwebserver.entity.Student;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
-package com.example.exe_6springwebserver.service;
+package com.example.exe_6springwebserver.service.students;
 
-import com.example.exe_6springwebserver.dao.StudentDAO;
+import com.example.exe_6springwebserver.dao.students.StudentDAO;
 import com.example.exe_6springwebserver.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

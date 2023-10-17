@@ -1,7 +1,7 @@
 package com.example.exe_6springwebserver.controller;
 
 import com.example.exe_6springwebserver.entity.Student;
-import com.example.exe_6springwebserver.service.StudentService;
+import com.example.exe_6springwebserver.service.students.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
