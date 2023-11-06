@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/exe_6-SpringWebServer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/exe_7-Thymeleaf" vcs="Git" />
   </component>
 </project>
