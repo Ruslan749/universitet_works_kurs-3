@@ -44,9 +44,9 @@ public class StudentsController {
 
 
     @GetMapping("showUpdateForm")
-    public ModelAndView showUpdateForm(@RequestParam Integer id){
+    public ModelAndView showUpdateForm(@RequestParam Integer studentId){
         ModelAndView nav = new ModelAndView("/add-student-form");
-        Optional<Student> optionalStudent = studentRepository.findById(id);
+        Optional<Student> optionalStudent = studentRepository.findById(studentId);
         Student student = new Student();
         if (optionalStudent.isPresent()){
             student = optionalStudent.get();
@@ -55,8 +55,8 @@ public class StudentsController {
         return nav;
     }
     @GetMapping("/deleteStudent")
-    public String deleteStudent(@RequestParam Integer id){
-        studentRepository.deleteById(id);
+    public String deleteStudent(@RequestParam Integer studentId){
+        studentRepository.deleteById(studentId);
         return "redirect:/list";
     }
 }

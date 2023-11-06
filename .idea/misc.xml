@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -7,6 +8,7 @@
         <option value="$PROJECT_DIR$/exe_2/pom.xml" />
         <option value="$PROJECT_DIR$/exe_3-loging/pom.xml" />
         <option value="$PROJECT_DIR$/exe_6-SpringWebServer/pom.xml" />
+        <option value="$PROJECT_DIR$/exe-8_SpringSecurity/pom.xml" />
       </list>
     </option>
   </component>
